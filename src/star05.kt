@@ -8,9 +8,8 @@ fun main(args: Array<String>) {
 }
 
 fun findManhattanDistance(start: Int) : Int {
-    val sqrtStart = roundUp(sqrt(start.toDouble()))
-    val size = if (sqrtStart % 2 == 0) sqrtStart + 1 else sqrtStart
-    val center = roundUp(size / 2.0) // q1, q2 == center, center
+    val size = getSpiralArraySize(start)
+    val center = getSpiralArrayCenter(size) // q1, q2 == center, center
     val last = (pow((size).toDouble(), 2.0)).toInt()
     val bottomLeft = last - size + 1
     val topLeft = bottomLeft - size + 1
@@ -31,6 +30,17 @@ fun findManhattanDistance(start: Int) : Int {
     }
 
     return abs(location.first - center) + abs(location.second - center)
+}
+
+fun getSpiralArrayCenter(size: Int): Int {
+    val center = roundUp(size / 2.0) // q1, q2 == center, center
+    return center
+}
+
+fun getSpiralArraySize(start: Int): Int {
+    val sqrtStart = roundUp(sqrt(start.toDouble()))
+    val size = if (sqrtStart % 2 == 0) sqrtStart + 1 else sqrtStart
+    return size
 }
 
 fun roundUp(num : Double) : Int {
